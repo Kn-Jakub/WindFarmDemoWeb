@@ -1,4 +1,6 @@
 # WindFarmDemo Web application
+**This repository is cloned from:** [windfarm demo](https://github.com/hudikm/WindFarmDemoWeb)
+
 This application is dependent on the REST service [windfarm demo](https://github.com/hudikm/WindFarmDemo).
 
 [Documentation(Slovak)](https://hudikm.github.io/WindfarmDemoDocs/)
