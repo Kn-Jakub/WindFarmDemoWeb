@@ -17,6 +17,7 @@ public class ServiceConnector {
     @JsonProperty("port")
     private Integer port;
 
+
     @JsonProperty("type")
     public String getType() {
         return type;
@@ -36,5 +37,7 @@ public class ServiceConnector {
     public void setPort(Integer port) {
         this.port = port;
     }
+
+
 
 }

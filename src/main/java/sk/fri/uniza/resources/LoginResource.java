@@ -59,9 +59,10 @@ public class LoginResource {
                     .findFirst()
                     .map(ServiceConnector::getPort)
                     .orElse(8085);
+            final String serverAddress = serviceDbAuthConfig.getAddress();
 
             //            final int serverPort = uriInfo.getBaseUri().getScheme().equals("http") ? 8085 : 8445;
-            URI build = new URIBuilder(uriInfo.getBaseUriBuilder().port(serverPort).build().resolve("/api/login").toString()) //http://localhost:8085/api/login
+            URI build = new URIBuilder(uriInfo.getBaseUriBuilder().host(serverAddress).port(serverPort).build().resolve("/backend/login").toString()) //http://localhost:8085/backend/login
                     .addParameters(oauthRequest)
                     .build();
             oauthUrl = build.toASCIIString();

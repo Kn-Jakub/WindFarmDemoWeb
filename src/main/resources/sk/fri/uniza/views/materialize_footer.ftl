@@ -2,11 +2,14 @@
 <footer class="page-footer orange">
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">WindFarm Demo</h5>
-                <p class="grey-text text-lighten-4">Demo aplikácia demoštrujúca použitie <a class="white-text"
-                                                                                            href="https://www.dropwizard.io/1.3.9/docs/">Dropwizard
-                        <i class="tiny material-icons">link</i></a></p>
+            <div class="col l8 s12">
+                <p class="grey-text text-lighten-4">
+                    Semestrálna práca postavená na
+                    <a class="white-text" href="https://www.dropwizard.io/1.3.9/docs/">WindFarmDemo<i class="tiny material-icons">link</i></a>
+                    a
+                    <a class="white-text" href="https://www.dropwizard.io/1.3.9/docs/">WindFarmDemoWeb<i class="tiny material-icons">link</i></a>
+
+                </p>
 
             </div>
         </div>

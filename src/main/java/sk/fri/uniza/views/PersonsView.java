@@ -11,8 +11,11 @@ public class PersonsView extends MaterializePage<MaterializeHeader, MaterializeF
     private final List<Person> persons;
     private final Paged paged;
     private final User loginUser;
-    public PersonsView(UriInfo uriInfo, List<Person> persons, Paged paged, Person loginUser) {
-        super("persons_table.ftl", uriInfo, new MaterializeHeader(loginUser, "Users", true), new MaterializeFooter());
+    public PersonsView(UriInfo uriInfo,
+                       List<Person> persons,
+                       Paged paged,
+                       Person loginUser) {
+        super("persons_table.ftl", uriInfo, new MaterializeHeader(loginUser, "Zoznam užívateľov", true), new MaterializeFooter());
         this.persons = persons;
         this.paged = paged;
         this.loginUser = loginUser;

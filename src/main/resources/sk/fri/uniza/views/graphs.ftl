@@ -6,7 +6,7 @@
         <div class="col s12 m6 ">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">Graf 1:</span>
+                    <span class="card-title">Teplota:</span>
                     <div class="row">
                         <div class="col s12">
                             <canvas id="myChart"></canvas>
@@ -19,7 +19,7 @@
         <div class="col s12 m6">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">Graf 2:</span>
+                    <span class="card-title">Osvetlenie:</span>
                     <div class="row">
                         <div class="col s12">
                             <canvas id="myChart2"></canvas>
@@ -40,7 +40,7 @@
         data: {
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
-                label: '# of Votes',
+                label: 'Teplota',
                 data: [12, 19, 3, 5, 2, 8],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

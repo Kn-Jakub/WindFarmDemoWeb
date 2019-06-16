@@ -35,6 +35,10 @@
     display: none;
 }
 
+.page-footer {
+  /*  background-color: #f4ff81 !important; */
+}
+
 body {
     display: flex;
     min-height: 100vh;

@@ -2,7 +2,7 @@
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
         <br><br>
-        <h1 class="header center orange-text">Prihlásenie do aplikácie WindFarm demo</h1>
+        <h3 class="header center orange-text">Pre zobrazenie dát je potrebné prihlásenie</h3>
         <div class="row center-align">
             <a class="waves-effect waves-light btn-large orange" onclick="onBtnClick()">Prihlásenie cez OAuth 2.0</a>
         </div>

@@ -24,6 +24,8 @@ public class ServiceDbAuth {
     private String path;
     @JsonProperty("serviceConnectors")
     private List<ServiceConnector> serviceConnectors = null;
+    @JsonProperty("address")
+    private String address;
 
     @JsonProperty("clientId")
     public String getClientId() {
@@ -65,5 +67,10 @@ public class ServiceDbAuth {
         this.serviceConnectors = serviceConnectors;
     }
 
+    @JsonProperty("address")
+    public String getAddress() { return address; }
+
+    @JsonProperty("address")
+    public void setAddress(String address) { this.address = address; }
 }
 

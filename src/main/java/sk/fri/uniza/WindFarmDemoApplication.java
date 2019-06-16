@@ -80,7 +80,8 @@ public class WindFarmDemoApplication extends Application<WindFarmDemoConfigurati
                     final Environment environment) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http:\\localhost:8085")
+                //.baseUrl("http:\\localhost:8085")
+                .baseUrl("http:\\" + configuration.getServiceDbAuth().getAddress() + ":8085")
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 

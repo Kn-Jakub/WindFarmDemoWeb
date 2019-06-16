@@ -11,7 +11,8 @@ public class PersonView extends MaterializePage<MaterializeHeader, MaterializeFo
     private final String toastMsg;
 
     public PersonView(UriInfo uriInfo, User loginUser, Person person, String toastMsg) {
-        super("person.ftl", uriInfo, new MaterializeHeader(loginUser, "User Info", true), new MaterializeFooter());
+
+        super("person.ftl", uriInfo, new MaterializeHeader(loginUser, "Osobné údaje", true), new MaterializeFooter());
         this.loginUser = loginUser;
         this.person = person;
         this.toastMsg = toastMsg;

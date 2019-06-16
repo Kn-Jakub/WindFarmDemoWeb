@@ -39,7 +39,11 @@ public class PersonsResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN})
-    public View getPersonsTable(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers, @QueryParam("page") Integer page) {
+    public View getPersonsTable(@Auth User user,
+                                @Context UriInfo uriInfo,
+                                @Context HttpHeaders headers,
+                                @QueryParam("page") Integer page)
+    {
         String sessionStr = headers.getCookies().get(Sessions.COOKIE_SESSION).getValue();
         Optional<Session> sessionOptional = sessionDao.get(sessionStr);
         sessionOptional.orElseThrow(() -> new WebApplicationException());
@@ -70,7 +74,11 @@ public class PersonsResource {
     @Path("/user-info")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.USER_READ_ONLY, Role.ADMIN})
-    public PersonView getPersonInfo(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers, @QueryParam("id") Long personID) {
+    public PersonView getPersonInfo(@Auth User user,
+                                    @Context UriInfo uriInfo,
+                                    @Context HttpHeaders headers,
+                                    @QueryParam("id") Long personID)
+    {
 
         if (personID == null) personID = user.getId();
 
@@ -99,7 +107,12 @@ public class PersonsResource {
     @Path("/user-delete")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.USER_READ_ONLY, Role.ADMIN})
-    public javax.ws.rs.core.Response userDelete(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers, @QueryParam("id") Long personID, @QueryParam("page") Integer page) {
+    public javax.ws.rs.core.Response userDelete(@Auth User user
+            , @Context UriInfo uriInfo
+            , @Context HttpHeaders headers
+            , @QueryParam("id") Long personID
+            , @QueryParam("page") Integer page)
+    {
 
         if (personID == null) return null;
 
@@ -132,7 +145,10 @@ public class PersonsResource {
     @Path("/new-user")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed(Role.ADMIN)
-    public NewPersonView newPerson(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers) {
+    public NewPersonView newPerson(@Auth User user
+            , @Context UriInfo uriInfo
+            , @Context HttpHeaders headers)
+    {
         return new NewPersonView(uriInfo, user, null);
     }
 
@@ -141,7 +157,9 @@ public class PersonsResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
-    public javax.ws.rs.core.Response newPerson(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers,
+    public javax.ws.rs.core.Response newPerson(@Auth User user,
+                                               @Context UriInfo uriInfo,
+                                               @Context HttpHeaders headers,
                                                @NotEmpty @FormParam("username") String username,
                                                @NotEmpty @FormParam("first_name") String first_name,
                                                @NotEmpty @FormParam("last_name") String last_name,
@@ -199,7 +217,9 @@ public class PersonsResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
-    public PersonView setPersonInfo(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers,
+    public PersonView setPersonInfo(@Auth User user,
+                                    @Context UriInfo uriInfo,
+                                    @Context HttpHeaders headers,
                                     @FormParam("id") Long id,
                                     @NotEmpty @FormParam("first_name") String first_name,
                                     @NotEmpty @FormParam("last_name") String last_name,

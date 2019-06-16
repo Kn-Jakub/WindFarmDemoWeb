@@ -6,6 +6,7 @@ serviceDbAuth:
   clientId: client1
   secret: 123456
   path: /
+  address: localhost #192.168.0.160
   serviceConnectors:
     - type: http
       port: 8085

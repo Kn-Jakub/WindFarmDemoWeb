@@ -48,19 +48,20 @@ public class HelloWorldResource {
             uri = UriBuilder.fromPath("/login")
                     .build();
         } else {
-            uri = UriBuilder.fromPath("/persons/user-info")
+            uri = UriBuilder.fromPath("/home")
                     .build();
         }
 
 
         return javax.ws.rs.core.Response.seeOther(uri)
                 .build();
-    }
 
+    }
+    /*
     @GET
     @Path("/hello-world")
     @Timed
-    @RolesAllowed(Role.ADMIN)
+    //@RolesAllowed(Role.ADMIN)
     public Saying sayHello(@QueryParam("name") Optional<String> name) {
         final String value = String.format(template, name.orElse(defaultName));
         return new Saying(counter.incrementAndGet(), value);
@@ -69,13 +70,13 @@ public class HelloWorldResource {
     @GET
     @Path("/hello-user")
     @Timed
-    @RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
+    //@RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
     public Saying sayHello(@Auth User user) {
         final String value = String.format(template, user.getName());
         return new Saying(counter.incrementAndGet(), value);
     }
 
-
+*/
     @GET
     @Path("/graphs")
     @Produces(MediaType.TEXT_HTML)
