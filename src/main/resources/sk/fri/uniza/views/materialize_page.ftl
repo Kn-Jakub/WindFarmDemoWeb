@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>WindFarm Demo</title>
-    <link rel="shortcut icon" type="image/png" href="/assets/img/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="/assets/img/wheater32x32.png"/>
 
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

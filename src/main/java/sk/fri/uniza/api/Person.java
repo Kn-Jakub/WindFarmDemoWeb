@@ -10,6 +10,9 @@ public class Person extends User {
     private String email;
     private Set<Phone> phoneNumbers;
 
+
+    private Set<City> followedCities;
+
     public Person() {
 
     }
@@ -59,4 +62,15 @@ public class Person extends User {
     public void setPhoneNumbers(Set<Phone> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
     }
+
+
+    public Set<City> getFollowedCities() {
+        return followedCities;
+    }
+
+    public void setFollowedCities(Set<City> followedCities) {
+        this.followedCities = followedCities;
+    }
+
+
 }

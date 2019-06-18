@@ -3,11 +3,6 @@
 <div class="section no-pad-bot" id="index-banner">
     <form class="container" action="/persons/new-user" method="post">
         <br><br>
-        <div class="row">
-            <div class="col s12">
-                <h4>Údaje o novom používateľovi</h4>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col s12">
@@ -20,7 +15,7 @@
                             </div>
                             <div class="col s9 m8 l10">
                                 <span class="white-text">
-
+                                    <h4>Údaje o novom používateľovi</h4>
                                 </span>
                             </div>
                         </div>
@@ -56,7 +51,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="username" name="username" type="email" class="validate" required>
+                                <input id="username" name="username" type="text" class="validate" required>
                                 <label for="username">Užívateľské meno</label>
                             </div>
                         </div>

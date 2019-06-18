@@ -26,6 +26,7 @@ import sk.fri.uniza.client.WindFarmRequest;
 import sk.fri.uniza.configuration.WindFarmDemoConfiguration;
 import sk.fri.uniza.core.User;
 import sk.fri.uniza.health.TemplateHealthCheck;
+import sk.fri.uniza.resources.CityResource;
 import sk.fri.uniza.resources.HelloWorldResource;
 import sk.fri.uniza.resources.LoginResource;
 import sk.fri.uniza.resources.PersonsResource;
@@ -143,11 +144,14 @@ public class WindFarmDemoApplication extends Application<WindFarmDemoConfigurati
     }
 
     private void registerResources(WindFarmDemoConfiguration configuration, Environment environment) {
+        final CityResource cityResource = new CityResource(sessionsDB);
         final HelloWorldResource helloWorldResource = new HelloWorldResource(configuration.getTemplate(), configuration.getDefaultName(),sessionsDB);
         final PersonsResource personsResource = new PersonsResource(sessionsDB);
+
         environment.jersey().register(helloWorldResource);
         environment.jersey().register(new LoginResource(sessionsDB, configuration.getServiceDbAuth()));
         environment.jersey().register(personsResource);
+        environment.jersey().register(cityResource);
 
     }
 

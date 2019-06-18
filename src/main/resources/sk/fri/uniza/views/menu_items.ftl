@@ -7,14 +7,15 @@
 
 <#assign menu_items = [
 {"subheader":"Mestá","divider":"true"},
-{"title":"Domov","url":"graphs","icon":"home"},
-{"title":"Pridaj mesto","url":"#", "icon":"add_box"},
-{"title":"Zoznam miest","url":"#", "icon":"view_list"},
+{"title":"Domov",       "icon":"home",      "url":"graphs"},
+{"title":"Moje mestá",  "icon":"home",      "url":"!#"},
+{"title":"Pridaj mesto","icon":"add_box",   "url":"home/new-city"},
+{"title":"Zoznam miest","icon":"view_list", "url":"home"},
 
 {"subheader":"Uživateľ","divider":"true"},
-{"title":"Osobné údaje","icon":"person","url":"persons/user-info"},
-{"title":"Nový užívateľ","icon":"person_add","url":"persons/new-user","roles":["ADMIN"]},
-{"title":"Zoznam užívateľov","icon":"group","url":"persons","roles":["ADMIN"]}
+{"title":"Osobné údaje",    "icon":"person",        "url":"persons/user-info"},
+{"title":"Nový užívateľ",   "icon":"person_add",    "url":"persons/new-user",   "roles":["ADMIN"]},
+{"title":"Zoznam užívateľov","icon":"group",        "url":"persons",            "roles":["ADMIN"]}
 
 <#--{"subheader":"Subheader 2","divider":"true"},
 {"title":"ADMIN READ_ONLY","url":"#","roles":["ADMIN","USER_READ_ONLY"]},

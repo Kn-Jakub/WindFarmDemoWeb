@@ -9,30 +9,11 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
 public class HomeView extends MaterializePage<MaterializeHeader, MaterializeFooter> {
-    private final List<City> cities;
-    private final Paged paged;
-    private final Person loginUser;
 
     public HomeView(UriInfo uriInfo,
-                    List<City> cities,
-                    Paged paged,
-                    Person loginUser)
+                    User loginUser)
     {
-        super("home.ftl", uriInfo, new MaterializeHeader(loginUser, "Moje mestá", true), new MaterializeFooter());
-        this.cities = cities;
-        this.paged = paged;
-        this.loginUser = loginUser;
-    }
+        super("home.ftl", uriInfo, new MaterializeHeader(loginUser, "Uvodna obrazovka", true), new MaterializeFooter());
 
-    public User getLoginUser() {
-        return loginUser;
-    }
-
-    public List<City> getCities() {
-        return cities;
-    }
-
-    public Paged getPaged() {
-        return paged;
     }
 }

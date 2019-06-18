@@ -7,19 +7,22 @@ import sk.fri.uniza.core.User;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
-public class PersonsView extends MaterializePage<MaterializeHeader, MaterializeFooter> {
+public class CitiesView extends MaterializePage<MaterializeHeader, MaterializeFooter> {
     private final List<Person> persons;
     private final Paged paged;
     private final User loginUser;
-
-    public PersonsView(UriInfo uriInfo,
-                       List<Person> persons,
-                       Paged paged,
-                       Person loginUser) {
-        super("persons_table.ftl", uriInfo, new MaterializeHeader(loginUser, "Zoznam užívateľov", true), new MaterializeFooter());
+    public CitiesView(UriInfo uriInfo,
+                      List<Person> persons,
+                      Paged paged,
+                      Person loginUser) {
+        super("cities_table.ftl", uriInfo, new MaterializeHeader(loginUser, "Zoznam sledovaných miest", true), new MaterializeFooter());
         this.persons = persons;
         this.paged = paged;
         this.loginUser = loginUser;
+    }
+
+    public List<Person> getPersons() {
+        return persons;
     }
 
     public Paged getPaged() {
@@ -28,9 +31,5 @@ public class PersonsView extends MaterializePage<MaterializeHeader, MaterializeF
 
     public User getLoginUser() {
         return loginUser;
-    }
-
-    public List<Person> getPersons() {
-        return persons;
     }
 }

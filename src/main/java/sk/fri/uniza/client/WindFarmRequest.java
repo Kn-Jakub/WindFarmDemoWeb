@@ -33,9 +33,19 @@ public interface WindFarmRequest {
     @POST("/backend/persons")
     Call<Person> savePersons(@Header("Authorization") String authorization, @Body Person person);
 
-    // Moje vytvorene volania na back-end
+    /********* Moje vytvorene volania na back-end *********/
     @GET("/backend/persons/{id}/cities")
     Call<Paged<List<City>>> getPagedCities(@Header("Authorization") String authorization, @Query("limit") Integer limit, @Query("id") Long id, @Query("page") Integer page);
+
+    @GET("/backend/cities/countries")
+    Call<List<String>> getCountries(@Header("Authorization") String authorization);
+
+    @GET("/backend/cities/")
+    Call<List<City>> getCities(@Header("Authorization") String authorization,@Query("country")  String country);
+
+    @POST("/backend/persons/{id}/cities")
+    Call<List<City>> saveCity(@Header("Authorization") String authorization,@Path("id") Long userId, @Query("cityID")  Long cityID);
+
 
     /***************************************************/
 

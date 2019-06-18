@@ -57,9 +57,9 @@ public class PersonsResource {
                 personLogin = personResponse.body();
             }
 
-            Response<Paged<List<Person>>> execute = WindFarmDemoApplication.getWindFarmServis().getPagedPersons("Bearer " + session.getToken(), 10, page).execute();
-            if (execute.isSuccessful()) {
-                return new PersonsView(uriInfo, execute.body().getData(), execute.body(), personLogin);
+            Response<Paged<List<Person>>> pagedResponse = WindFarmDemoApplication.getWindFarmServis().getPagedPersons("Bearer " + session.getToken(), 10, page).execute();
+            if (pagedResponse.isSuccessful()) {
+                return new PersonsView(uriInfo, pagedResponse.body().getData(), pagedResponse.body(), personLogin);
             }
             return null;
 
@@ -145,9 +145,9 @@ public class PersonsResource {
     @Path("/new-user")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed(Role.ADMIN)
-    public NewPersonView newPerson(@Auth User user
-            , @Context UriInfo uriInfo
-            , @Context HttpHeaders headers)
+    public NewPersonView newPerson(@Auth User user,
+                                   @Context UriInfo uriInfo,
+                                   @Context HttpHeaders headers)
     {
         return new NewPersonView(uriInfo, user, null);
     }

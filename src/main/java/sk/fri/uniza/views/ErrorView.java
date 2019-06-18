@@ -8,7 +8,7 @@ public class ErrorView extends MaterializePage<MaterializeHeader, MaterializeFoo
     private ErrorMessage errorMessage;
 
     public ErrorView(ErrorMessage errorMessage) {
-        super("error_page.ftl", null, new MaterializeHeader(null, "Error page", true), new MaterializeFooter());
+        super("error_page.ftl", null, new MaterializeHeader(null, "Error page",  false), new MaterializeFooter());
         this.errorMessage = errorMessage;
     }
 
