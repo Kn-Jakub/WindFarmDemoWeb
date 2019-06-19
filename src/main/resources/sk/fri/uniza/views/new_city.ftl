@@ -1,7 +1,7 @@
 <#-- @ftlvariable name="" type="sk.fri.uniza.views.NewCityView" -->
 <!-- calls getPersons().getName() and sanitizes it -->
 
-<div class="section no-pad-bot" id="index-banner">
+<div class="section no-pad-bot" id="index-banner" xmlns="http://www.w3.org/1999/html">
 <#--    <form class="container" action="/home/new-city/from-country" method="post">-->
         <div class="container">
         <br><br>
@@ -28,10 +28,11 @@
                             <form action="/home/new-city/from-country" method="post">
                                 <div class="input-field col s4">
                                     <select id="country" name="country" required>
-                                        <option value="null" >-Vyber Krajinu-</option>
+
+                                        <option value="null" <#if (getSelectedCountry()?? && getSelectedCountry() == "null")>selected</#if>>-Vyber Krajinu-</option>
 
                                         <#list getCountries() as country>
-                                            <option value="${country}" >${country}</option>
+                                            <option value="${country}" <#if (getSelectedCountry()?? && getSelectedCountry() == country)>selected</#if>>${country}</option>
                                         </#list>
 
                                     </select>
@@ -51,7 +52,7 @@
                                     <select id="city" name="city" required>
 <#--                                <div class="form-group col s6">-->
 <#--                                    <select name="city" id="citye" class="form-control input-lg">-->
-                                        <#if getCities() != null >
+                                        <#if getCities()??>
 
                                             <#list getCities() as city>
                                                 <option value="${city.getId()}" >${city.getName()}</option>
@@ -102,12 +103,13 @@
 
         <div class="row">
             <div class="col s12 right-align">
-                <button class="btn waves-effect waves-light orange" type="submit" name="action">Uložiť
+                <button class="btn waves-effect waves-light orange" type="submit" name="action2">Uložiť
                     <i class="material-icons right">send</i>
                 </button>
             </div>
         </div>
         </div>
+    </form>
         <#if toastMsg??>
         <script>
             // A $( document ).ready() block.
@@ -126,8 +128,10 @@
                     if($(this).val() != 'null')
                     {
 
+                        $("#city").empty();
+                        $("#city").append('<option value="nieco3" >nieco3</option>');
                         var value = $(this).val();
-                        $("#selectedCountry").attr("value", value);
+                        {{ }}
 
                     }
                     else

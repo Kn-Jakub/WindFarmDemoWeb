@@ -29,6 +29,14 @@ public class WeatherRecord {
     @JsonProperty("creationTimeStamp")
     private Timestamp creationTime;
 
+    public WeatherRecord(){
+        this.id = null;
+        this.cityId = null;
+        this.temperature = 0;
+        this.pressure = 0;
+        this.humidity = 0;
+        this.creationTime = null;
+    }
 
     public WeatherRecord(Integer cityId, double temperature, double pressure, double humidity, Timestamp creationTime) {
         this.id = null;

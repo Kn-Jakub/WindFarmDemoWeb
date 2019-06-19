@@ -126,7 +126,7 @@ public class PersonsResource {
 
             response = WindFarmDemoApplication.getWindFarmServis().deletePerson(session.getBearerToken(), personID).execute();
             if (response.isSuccessful()) {
-                URI uri = UriBuilder.fromPath("/persons")
+                URI uri = UriBuilder.fromPath("/my-cities")
                         .queryParam("page", page)
                         .build();
                 return javax.ws.rs.core.Response.seeOther(uri)

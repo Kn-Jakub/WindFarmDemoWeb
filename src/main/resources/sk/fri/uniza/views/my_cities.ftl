@@ -2,6 +2,28 @@
 <!-- calls getPersons().getName() and sanitizes it -->
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
+
+        <ul class="collection">
+            <#list getCities() as city>
+                <div class="row">
+
+                        <li class="collection-item avatar">
+                            <div class="col s10">
+                                 <img src="/assets/img/cityIconRect.jpg" alt="" class="circle">
+
+                                <a href="/home/city/?id=${city.getIdString()}" class="collection-item "><h7>${city.getName()}   [${city.getCountry()}]</h7></a>
+                            </div>
+                            <div class="col s2">
+                                <a href="/home/city-delete?cityId=${city.getIdString()}&page=${getPaged().getPage()}" class="secondary-content ">
+                                    <i class="material-icons ">delete_forever</i>
+                                </a>
+                            </div>
+                        </li>
+                   <br />
+                </div>
+            </#list>
+        </ul>
+
         <ul class="pagination">
             <#if paged.prevPage?? >
                 <li class="waves-effect"><a href="?page=${paged.prevPage}">

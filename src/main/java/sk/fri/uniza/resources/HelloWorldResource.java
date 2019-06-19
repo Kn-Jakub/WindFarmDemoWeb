@@ -77,13 +77,13 @@ public class HelloWorldResource {
     }
 
 */
-    @GET
-    @Path("/graphs")
-    @Produces(MediaType.TEXT_HTML)
-    @PermitAll
-    public GraphView graphView(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers) {
-
-        return new GraphView(uriInfo, user);
-    }
+//    @GET
+//    @Path("/graphs")
+//    @Produces(MediaType.TEXT_HTML)
+//    @PermitAll
+//    public GraphView graphView(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers) {
+//
+//        return new GraphView(uriInfo, user);
+//    }
 
 }

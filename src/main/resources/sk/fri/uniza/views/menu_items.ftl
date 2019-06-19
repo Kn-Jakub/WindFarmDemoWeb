@@ -7,10 +7,10 @@
 
 <#assign menu_items = [
 {"subheader":"Mestá","divider":"true"},
-{"title":"Domov",       "icon":"home",      "url":"graphs"},
-{"title":"Moje mestá",  "icon":"home",      "url":"!#"},
+{"title":"Domov",       "icon":"home",      "url":"home"},
+{"title":"Moje mestá",  "icon":"view_list",      "url":"home/my-cities"},
 {"title":"Pridaj mesto","icon":"add_box",   "url":"home/new-city"},
-{"title":"Zoznam miest","icon":"view_list", "url":"home"},
+<#--{"title":"Zoznam miest","icon":"view_list", "url":"home"},-->
 
 {"subheader":"Uživateľ","divider":"true"},
 {"title":"Osobné údaje",    "icon":"person",        "url":"persons/user-info"},

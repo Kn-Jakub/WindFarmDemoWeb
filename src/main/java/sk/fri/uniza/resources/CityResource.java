@@ -10,6 +10,7 @@ import sk.fri.uniza.WindFarmDemoApplication;
 import sk.fri.uniza.api.City;
 import sk.fri.uniza.api.Paged;
 import sk.fri.uniza.api.Person;
+import sk.fri.uniza.api.WeatherRecord;
 import sk.fri.uniza.auth.Role;
 import sk.fri.uniza.auth.Session;
 import sk.fri.uniza.auth.Sessions;
@@ -19,11 +20,9 @@ import sk.fri.uniza.views.*;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -40,7 +39,6 @@ public class CityResource {
     }
 
     @GET
-    @Path("/graphs")
     @Produces(MediaType.TEXT_HTML)
     @PermitAll
     public View homeView(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers) {
@@ -65,12 +63,13 @@ public class CityResource {
             Response<Person> personResponse = WindFarmDemoApplication.getWindFarmServis().getPerson(session.getBearerToken(),  user.getId()).execute();
             if (personResponse.isSuccessful()) {
                 logedPerson = personResponse.body();
-            }
 
-            Response<Paged<List<City>>> execute = WindFarmDemoApplication.getWindFarmServis().getPagedCities("Bearer " + session.getToken(), 10, user.getId(),page).execute();
-            if (execute.isSuccessful()) {
-                myCitiesView = new MyCitiesView(uriInfo, execute.body().getData(), execute.body(),logedPerson);
-                return myCitiesView;
+
+                Response<Paged<List<City>>> execute = WindFarmDemoApplication.getWindFarmServis().getPagedCities("Bearer " + session.getToken(),logedPerson.getId(), 10,  page).execute();
+                if (execute.isSuccessful()) {
+                    myCitiesView = new MyCitiesView(uriInfo, execute.body().getData(), execute.body(), logedPerson);
+                    return myCitiesView;
+                }
             }
             return null;
 
@@ -86,9 +85,62 @@ public class CityResource {
     @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
     public View showCity(@Auth User user,
                          @Context UriInfo uriInfo,
-                         @Context HttpHeaders headers)
+                         @Context HttpHeaders headers,
+                         @QueryParam("id") Long cityId
+                         )
     {
-        return null;
+        List<WeatherRecord> wheaterRecords = null;
+        try{
+            Response<List<WeatherRecord>> weatherRecordsResponse = WindFarmDemoApplication.getWindFarmServis().getRecords(sessionDao.getSession(headers).getBearerToken(),cityId).execute();
+            if (!weatherRecordsResponse.isSuccessful()) {
+                return null;
+            }
+            wheaterRecords = weatherRecordsResponse.body();
+
+            return new GraphView(uriInfo,user,wheaterRecords);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new WebApplicationException(e);
+        }
+    }
+
+    @GET
+    @Path("/city-delete")
+    @Produces(MediaType.TEXT_HTML)
+    @RolesAllowed({Role.USER_READ_ONLY, Role.ADMIN})
+    public javax.ws.rs.core.Response cityDelete(@Auth User user,
+                               @Context UriInfo uriInfo,
+                               @Context HttpHeaders headers,
+                               @QueryParam("cityId") Long cityID,
+                               @QueryParam("page") Integer page)
+    {
+
+        if (cityID == null) return null;
+
+
+        Session session = sessionDao.getSession(headers);
+
+        Response<Void> response;
+        try {
+
+            response = WindFarmDemoApplication.getWindFarmServis().deleteCity(session.getBearerToken(), user.getId(), cityID).execute();
+            if (response.isSuccessful()) {
+                URI uri = UriBuilder.fromPath("home/my-cities")
+                        .queryParam("page", page)
+                        .build();
+                return javax.ws.rs.core.Response.seeOther(uri)
+                        .build();
+
+            }
+            throw new WebApplicationException(response.code());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new WebApplicationException(e);
+        }
+
+
+
     }
 
     @GET
@@ -123,27 +175,33 @@ public class CityResource {
     public View newCity(@Auth User user,
                         @Context UriInfo uriInfo,
                         @Context HttpHeaders headers,
-                        @NotEmpty @FormParam("city") Long id) {
-        Response<Person> personResponse;
-        Person personLoggedIn = null;
+                        @NotEmpty @FormParam("city") String sId) {
+//        Response<Person> personResponse;
+//        Person personLoggedIn = null;
         try {
+            String sId2 = sId.replaceAll("[^\\d.]","");
+            Long id = Long.parseLong(sId2);
+            Integer page = 10;
 
-
-            Response<List<City>> newCityResponse = WindFarmDemoApplication.getWindFarmServis().
+            Response<Void> newCityResponse = WindFarmDemoApplication.getWindFarmServis().
                     saveCity(sessionDao.getSession(headers).getBearerToken(), user.getId(), id).execute();
-
-            personResponse = WindFarmDemoApplication.getWindFarmServis().getPerson(sessionDao.getSession(headers).getBearerToken(), user.getId()).execute();
-            if (personResponse.isSuccessful()) {
-                personLoggedIn = personResponse.body();
-                return new PersonView(uriInfo, user, personLoggedIn, null);
-            }
 
             if (!newCityResponse.isSuccessful())
                 throw new WebApplicationException(newCityResponse.errorBody().string(), newCityResponse.code());
 
-            List<City> cities = newCityResponse.body();
+//            personResponse = WindFarmDemoApplication.getWindFarmServis().getPerson(sessionDao.getSession(headers).getBearerToken(), user.getId()).execute();
 
-            return new MyCitiesView(uriInfo, cities, null, personLoggedIn);
+//            if (personResponse.isSuccessful()) {
+//                personLoggedIn = personResponse.body();
+                URI uri = UriBuilder.fromPath("home/my-cities")
+                        .queryParam("page", page)
+                        .build();
+                uriInfo.getAbsolutePathBuilder().uri(uri);
+
+                return newCityView;
+//            }
+
+
 
         }  catch (IOException e) {
             e.printStackTrace();
@@ -151,8 +209,6 @@ public class CityResource {
         }
 
     }
-
-
 
     @POST
     @Path("/new-city/from-country")
@@ -171,6 +227,7 @@ public class CityResource {
             if (citiesResponse.isSuccessful()) {
                 List<City> cities = citiesResponse.body();
                 newCityView.setCities(cities);
+                newCityView.setSelectedCountry(country);
                 return newCityView;
             }
             throw new WebApplicationException(citiesResponse.code());

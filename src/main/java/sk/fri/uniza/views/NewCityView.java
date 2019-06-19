@@ -11,6 +11,7 @@ public class NewCityView extends MaterializePage<MaterializeHeader, MaterializeF
     private final String toastMsg;
     private final List<String> countries;
     private List<City> cities;
+    private String selectedCountry;
 
     public NewCityView(UriInfo uriInfo,
                        User loginUser,
@@ -21,6 +22,7 @@ public class NewCityView extends MaterializePage<MaterializeHeader, MaterializeF
         this.toastMsg = toastMsg;
         this.countries = countries;
         this.cities = null;
+        this.selectedCountry ="null";
     }
 
     public User getLoginUser() {
@@ -42,5 +44,13 @@ public class NewCityView extends MaterializePage<MaterializeHeader, MaterializeF
     public List<City> getCities()
     {
         return cities;
+    }
+
+    public String getSelectedCountry() {
+        return selectedCountry;
+    }
+
+    public void setSelectedCountry(String selectedCountry) {
+        this.selectedCountry = selectedCountry;
     }
 }

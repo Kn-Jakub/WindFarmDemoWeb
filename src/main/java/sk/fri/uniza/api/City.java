@@ -38,6 +38,11 @@ public class City {
     public Long getId() {
         return id;
     }
+    public String getIdString() {
+        String sId = id.toString();
+        String sId2 = sId.replaceAll("[^\\d.]","");
+        return sId2;
+    }
 
     public void setId(Long id) {
         this.id = id;

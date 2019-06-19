@@ -35,16 +35,23 @@ public interface WindFarmRequest {
 
     /********* Moje vytvorene volania na back-end *********/
     @GET("/backend/persons/{id}/cities")
-    Call<Paged<List<City>>> getPagedCities(@Header("Authorization") String authorization, @Query("limit") Integer limit, @Query("id") Long id, @Query("page") Integer page);
+    Call<Paged<List<City>>> getPagedCities(@Header("Authorization") String authorization, @Path("id") Long id, @Query("limit") Integer limit,  @Query("page") Integer page);
 
     @GET("/backend/cities/countries")
     Call<List<String>> getCountries(@Header("Authorization") String authorization);
 
-    @GET("/backend/cities/")
+    @GET("/backend/cities")
     Call<List<City>> getCities(@Header("Authorization") String authorization,@Query("country")  String country);
 
     @POST("/backend/persons/{id}/cities")
-    Call<List<City>> saveCity(@Header("Authorization") String authorization,@Path("id") Long userId, @Query("cityID")  Long cityID);
+    Call<Void> saveCity(@Header("Authorization") String authorization,@Path("id") Long userId, @Query("cityID")  Long cityID);
+
+    @DELETE("/backend/persons/{id}/cities")
+    Call<Void> deleteCity(@Header("Authorization") String authorization,@Path("id") Long userId, @Query("cityID")  Long cityID);
+
+
+    @GET("/backend/weather/data/recordList")
+    Call<List<WeatherRecord>> getRecords(@Header("Authorization") String authorization, @Query("cityID")  Long cityID);
 
 
     /***************************************************/

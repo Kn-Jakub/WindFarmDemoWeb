@@ -18,7 +18,11 @@
     </#list>
     <!-- scripts-->
     <script src="/assets/js/jquery-3.4.0.min.js"></script>
-    <script src="/assets/js/Chart.min.js"></script>
+<#--    <script src="/assets/js/Chart.min.js"></script>-->
+
+    <script src="https://cdn.jsdelivr.net/npm/moment@latest/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
+
 </head>
 
 <body>
