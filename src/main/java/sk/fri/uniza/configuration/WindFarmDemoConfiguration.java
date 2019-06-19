@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.dropwizard.Configuration;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -20,6 +21,8 @@ public class WindFarmDemoConfiguration extends Configuration {
     private String defaultName;
     @JsonProperty("serviceDbAuth")
     private ServiceDbAuth serviceDbAuth;
+    @JsonProperty("swagger")
+    public SwaggerBundleConfiguration swaggerBundleConfiguration;
 
     @JsonProperty("template")
     public String getTemplate() {
@@ -51,4 +54,12 @@ public class WindFarmDemoConfiguration extends Configuration {
         this.serviceDbAuth = serviceDbAuth;
     }
 
+    @JsonProperty("swagger")
+    public SwaggerBundleConfiguration getSwaggerBundleConfiguration() {
+        return swaggerBundleConfiguration;
+    }
+    @JsonProperty("swagger")
+    public void setSwaggerBundleConfiguration(SwaggerBundleConfiguration swaggerBundleConfiguration) {
+        this.swaggerBundleConfiguration = swaggerBundleConfiguration;
+    }
 }

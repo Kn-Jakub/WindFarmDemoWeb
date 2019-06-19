@@ -3,6 +3,10 @@ package sk.fri.uniza.resources;
 
 import com.codahale.metrics.annotation.Timed;
 import io.dropwizard.auth.Auth;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.AuthorizationScope;
 import sk.fri.uniza.api.Saying;
 import sk.fri.uniza.auth.Role;
 import sk.fri.uniza.auth.Sessions;
@@ -19,6 +23,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Path("")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value = "Hello World")
 public class HelloWorldResource {
     private final String template;
     private final String defaultName;
@@ -34,6 +39,7 @@ public class HelloWorldResource {
 
     @GET
     @Path("")
+    @ApiOperation(value = "TODO")
     public Response redirect(@Context HttpHeaders headers) {
         URI uri;
         User user = null;

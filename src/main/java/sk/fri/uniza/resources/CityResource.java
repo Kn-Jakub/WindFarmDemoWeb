@@ -2,6 +2,10 @@ package sk.fri.uniza.resources;
 
 import io.dropwizard.auth.Auth;
 import io.dropwizard.views.View;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.AuthorizationScope;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +32,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Path("/home")
+@Api(value = "City")
 public class CityResource {
     final Logger myLogger = LoggerFactory.getLogger(this.getClass());
     private Sessions sessionDao;
@@ -41,6 +46,8 @@ public class CityResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     @PermitAll
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2")})
     public View homeView(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers) {
 
         return new HomeView(uriInfo, user);
@@ -50,6 +57,10 @@ public class CityResource {
     @Path("/my-cities")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public View showUsersCities(@Auth User user,
                                 @Context UriInfo uriInfo,
                                 @Context HttpHeaders headers,
@@ -83,6 +94,10 @@ public class CityResource {
     @Path("/city")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public View showCity(@Auth User user,
                          @Context UriInfo uriInfo,
                          @Context HttpHeaders headers,
@@ -109,6 +124,10 @@ public class CityResource {
     @Path("/city-delete")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.USER_READ_ONLY, Role.ADMIN})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public javax.ws.rs.core.Response cityDelete(@Auth User user,
                                @Context UriInfo uriInfo,
                                @Context HttpHeaders headers,
@@ -146,7 +165,11 @@ public class CityResource {
     @GET
     @Path("/new-city")
     @Produces(MediaType.TEXT_HTML)
-//    @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
+    @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public View newCity(@Auth User user,
                          @Context UriInfo uriInfo,
                          @Context HttpHeaders headers)
@@ -172,6 +195,10 @@ public class CityResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public View newCity(@Auth User user,
                         @Context UriInfo uriInfo,
                         @Context HttpHeaders headers,
@@ -215,6 +242,10 @@ public class CityResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public View newCityFromCountry(@Auth User user,
                                    @Context UriInfo uriInfo,
                                    @Context HttpHeaders headers,

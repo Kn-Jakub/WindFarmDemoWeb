@@ -2,6 +2,10 @@ package sk.fri.uniza.resources;
 
 import io.dropwizard.auth.Auth;
 import io.dropwizard.views.View;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.AuthorizationScope;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +32,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Path("/persons")
+@Api(value = "Person")
 public class PersonsResource {
     final Logger myLogger = LoggerFactory.getLogger(this.getClass());
     private Sessions sessionDao;
@@ -39,6 +44,9 @@ public class PersonsResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources")})})
     public View getPersonsTable(@Auth User user,
                                 @Context UriInfo uriInfo,
                                 @Context HttpHeaders headers,
@@ -74,6 +82,10 @@ public class PersonsResource {
     @Path("/user-info")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.USER_READ_ONLY, Role.ADMIN})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public PersonView getPersonInfo(@Auth User user,
                                     @Context UriInfo uriInfo,
                                     @Context HttpHeaders headers,
@@ -107,6 +119,10 @@ public class PersonsResource {
     @Path("/user-delete")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.USER_READ_ONLY, Role.ADMIN})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public javax.ws.rs.core.Response userDelete(@Auth User user
             , @Context UriInfo uriInfo
             , @Context HttpHeaders headers
@@ -145,6 +161,9 @@ public class PersonsResource {
     @Path("/new-user")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed(Role.ADMIN)
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources")})})
     public NewPersonView newPerson(@Auth User user,
                                    @Context UriInfo uriInfo,
                                    @Context HttpHeaders headers)
@@ -157,6 +176,10 @@ public class PersonsResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public javax.ws.rs.core.Response newPerson(@Auth User user,
                                                @Context UriInfo uriInfo,
                                                @Context HttpHeaders headers,
@@ -217,6 +240,10 @@ public class PersonsResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
+    @ApiOperation(value = "TODO",
+            authorizations = {@Authorization(value = "oauth2",
+                    scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
+                            @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
     public PersonView setPersonInfo(@Auth User user,
                                     @Context UriInfo uriInfo,
                                     @Context HttpHeaders headers,

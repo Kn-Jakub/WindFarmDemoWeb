@@ -3,6 +3,10 @@ package sk.fri.uniza.resources;
 import com.google.common.collect.ImmutableMap;
 import io.dropwizard.auth.AuthenticationException;
 import io.dropwizard.views.View;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.AuthorizationScope;
 import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +14,7 @@ import sk.fri.uniza.WindFarmDemoApplication;
 import sk.fri.uniza.api.AccessToken;
 import sk.fri.uniza.api.OauthRequest;
 import sk.fri.uniza.api.OauthRequestBuilder;
+import sk.fri.uniza.auth.Role;
 import sk.fri.uniza.auth.Session;
 import sk.fri.uniza.auth.Sessions;
 import sk.fri.uniza.core.User;
@@ -26,6 +31,7 @@ import java.net.URISyntaxException;
 import java.util.Map;
 
 @Path("/login")
+@Api(value = "Login")
 public class LoginResource {
 
     final Logger myLogger = LoggerFactory.getLogger(this.getClass());
@@ -41,6 +47,7 @@ public class LoginResource {
 
     @GET
     @Produces(MediaType.TEXT_HTML)
+    @ApiOperation(value = "TODO")
     public View showLoginPage(@Context UriInfo uriInfo) {
         String oauthUrl = null;
         uriInfo.getBaseUri().toString();
@@ -78,6 +85,7 @@ public class LoginResource {
     @Path("oauth-callback")
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @ApiOperation(value = "TODO")
     public Response oauthCallback(@QueryParam("code") String code, @QueryParam("state") String state, @QueryParam("stay_signin") Boolean stay_signin /*MultivaluedMap<String, String> formParams*/) {
 
         Map<String, String> codeRequest = ImmutableMap.of(
@@ -123,6 +131,7 @@ public class LoginResource {
 
     @GET
     @Path("logout")
+    @ApiOperation(value = "TODO")
     public Response logout() {
 
 

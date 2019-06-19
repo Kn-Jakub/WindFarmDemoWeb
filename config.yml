@@ -44,3 +44,16 @@ server:
   adminConnectors:
     - type: http
       port: 8082
+
+#Swagger documentation builder
+#https://github.com/smoketurner/dropwizard-swagger
+swagger:
+  resourcePackage: sk.fri.uniza.resources
+  title: IoT Weather Frontend Microservices
+  schemes: ["http","https"]
+  uriPrefix: "/"
+  oauth2:
+    clientId: client1
+    clientSecrete: 123456
+    appName: IoT Weather
+    realm: JWT

@@ -15,6 +15,8 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.View;
 import io.dropwizard.views.ViewBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundle;
+import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import org.eclipse.jetty.server.session.SessionHandler;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import retrofit2.Response;
@@ -74,6 +76,14 @@ public class WindFarmDemoApplication extends Application<WindFarmDemoConfigurati
                 new HttpsRedirect()
         ));
         bootstrap.addBundle(new ViewBundle<WindFarmDemoConfiguration>());
+
+        // Swagger documentation available on http://localhost:<your_port>/swagger
+        bootstrap.addBundle(new SwaggerBundle<WindFarmDemoConfiguration>() {
+            @Override
+            protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(WindFarmDemoConfiguration configuration) {
+                return configuration.swaggerBundleConfiguration;
+            }
+        });
     }
 
     @Override
