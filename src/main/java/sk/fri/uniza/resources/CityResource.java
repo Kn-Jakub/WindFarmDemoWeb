@@ -46,7 +46,7 @@ public class CityResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     @PermitAll
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Return webpage home",
             authorizations = {@Authorization(value = "oauth2")})
     public View homeView(@Auth User user, @Context UriInfo uriInfo, @Context HttpHeaders headers) {
 
@@ -57,7 +57,7 @@ public class CityResource {
     @Path("/my-cities")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "According to received parameter page, contact the back-end and return HTML page whit cities of logged user",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
@@ -94,7 +94,7 @@ public class CityResource {
     @Path("/city")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Get the page with measured data",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
@@ -124,7 +124,7 @@ public class CityResource {
     @Path("/city-delete")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.USER_READ_ONLY, Role.ADMIN})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Delete city from user database and return the refreshed page",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
@@ -166,7 +166,7 @@ public class CityResource {
     @Path("/new-city")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Return the formular web page for creating new city for observation",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
@@ -195,7 +195,7 @@ public class CityResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Send POST request to backend for observing of new city for person",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
@@ -242,7 +242,7 @@ public class CityResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN,Role.USER_READ_ONLY})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Send the request from user for return list of cities according to country",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})

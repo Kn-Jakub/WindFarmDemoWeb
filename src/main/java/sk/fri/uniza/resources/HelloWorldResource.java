@@ -39,7 +39,7 @@ public class HelloWorldResource {
 
     @GET
     @Path("")
-    @ApiOperation(value = "TODO")
+    @ApiOperation(value = "Redirect function. The results depends on the state of user (Is user login or log out)")
     public Response redirect(@Context HttpHeaders headers) {
         URI uri;
         User user = null;

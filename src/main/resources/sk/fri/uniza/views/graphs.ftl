@@ -71,7 +71,7 @@
                 fill:false,
                 backgroundColor: 'rgb(246,255,37)',
                 borderColor: 'rgb(255,222,0)',
-                borderWidth: 1
+                borderWidth: 2
             }]
         },
         options: {
@@ -124,7 +124,7 @@
                 fill:false,
                 backgroundColor: 'rgb(44,62,255)',
                 borderColor: 'rgb(131,134,255)',
-                borderWidth: 1
+                borderWidth: 2
 
             }]
         },
@@ -167,36 +167,32 @@
 <script defer>
     var ctx3 = document.getElementById('chartPressure');
     var myChart = new Chart(ctx3, {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: "",
 
             datasets: [{
                 label: 'Tlak vzduchu',
                 data: ${getDataPressureTime(100)},
-                fillColor:'rgb(151,255,88)',
-                strokeColor: "black",
-                // backgroundColor:'rgb(151,255,88)'
-                //     // 'rgba(54, 162, 235, 0.2)',
-                //     // 'rgba(255, 206, 86, 0.2)',
-                //     // 'rgba(75, 192, 192, 0.2)',
-                //     // 'rgba(153, 102, 255, 0.2)',
-                //     // 'rgba(255, 159, 64, 0.2)'
-                // ,
-                // borderColor:
-                //     'rgba(255, 99, 132, 1)'
-                //     // 'rgba(54, 162, 235, 1)',
-                //     // 'rgba(255, 206, 86, 1)',
-                //     // 'rgba(75, 192, 192, 1)',
-                //     // 'rgba(153, 102, 255, 1)',
-                //     // 'rgba(255, 159, 64, 1)'
-                // ,
+                // fillColor:'rgb(151,255,88)',
+                // strokeColor: "black",
+                backgroundColor: 'rgb(255,121,21)',
+                borderColor: 'rgb(255,13,0)',
                 borderWidth: 2
+                fill: true
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: false
+            },
             scales: {
 
                 xAxes: [{

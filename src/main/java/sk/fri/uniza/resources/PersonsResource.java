@@ -44,7 +44,7 @@ public class PersonsResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Return view of persons table",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources")})})
     public View getPersonsTable(@Auth User user,
@@ -82,7 +82,7 @@ public class PersonsResource {
     @Path("/user-info")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.USER_READ_ONLY, Role.ADMIN})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Return more information about user",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
@@ -119,7 +119,7 @@ public class PersonsResource {
     @Path("/user-delete")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.USER_READ_ONLY, Role.ADMIN})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Send request for removing user from database",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
@@ -161,7 +161,7 @@ public class PersonsResource {
     @Path("/new-user")
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed(Role.ADMIN)
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Return the view page formular for create new user",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources")})})
     public NewPersonView newPerson(@Auth User user,
@@ -176,7 +176,7 @@ public class PersonsResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Post method for saving new user",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})
@@ -240,7 +240,7 @@ public class PersonsResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_HTML)
     @RolesAllowed({Role.ADMIN, Role.USER_READ_ONLY})
-    @ApiOperation(value = "TODO",
+    @ApiOperation(value = "Update the user info",
             authorizations = {@Authorization(value = "oauth2",
                     scopes = {@AuthorizationScope(scope = Role.ADMIN, description = "Access to all resources"),
                             @AuthorizationScope(scope = Role.USER_READ_ONLY, description = "Limited access")})})

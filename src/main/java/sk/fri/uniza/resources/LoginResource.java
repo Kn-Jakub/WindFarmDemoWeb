@@ -47,7 +47,7 @@ public class LoginResource {
 
     @GET
     @Produces(MediaType.TEXT_HTML)
-    @ApiOperation(value = "TODO")
+    @ApiOperation(value = "Return login page.")
     public View showLoginPage(@Context UriInfo uriInfo) {
         String oauthUrl = null;
         uriInfo.getBaseUri().toString();
@@ -85,7 +85,6 @@ public class LoginResource {
     @Path("oauth-callback")
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @ApiOperation(value = "TODO")
     public Response oauthCallback(@QueryParam("code") String code, @QueryParam("state") String state, @QueryParam("stay_signin") Boolean stay_signin /*MultivaluedMap<String, String> formParams*/) {
 
         Map<String, String> codeRequest = ImmutableMap.of(
@@ -131,7 +130,7 @@ public class LoginResource {
 
     @GET
     @Path("logout")
-    @ApiOperation(value = "TODO")
+    @ApiOperation(value = "Log out the user from server")
     public Response logout() {
 
 
